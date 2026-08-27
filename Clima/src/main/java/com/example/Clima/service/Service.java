@@ -26,7 +26,7 @@ public class Service {
             + "temperature_2m_max"
             + "&timezone=auto"
             + "&forecast_days=1";
-
+    //http://localhost:8080/clima
     public Map<String, Object> preverTempo() {
 
         Map<String, Object> dados = new LinkedHashMap<>();
