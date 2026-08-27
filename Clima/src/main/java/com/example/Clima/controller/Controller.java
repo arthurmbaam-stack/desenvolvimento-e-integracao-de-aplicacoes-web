@@ -10,7 +10,7 @@ public class Controller {
 
     Service service = new Service();
 
-    //https://localhost:8080/clima
+    //http://localhost:8080/clima
     @GetMapping("/clima")
     public String getClima() {
         return service.preverTempo();
