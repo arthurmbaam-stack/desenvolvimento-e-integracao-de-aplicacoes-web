@@ -1,20 +1,30 @@
 package com.example.Clima.controller;
 
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.Clima.service.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 public class Controller {
 
-    Service service = new Service();
+    private final Service service = new Service();
 
-    //http://localhost:8080/clima
     @GetMapping("/clima")
-    public String getClima() {
-        return service.preverTempo();
-    }
-    
+    public ResponseEntity<Map<String, Object>> getClima() {
 
+        Map<String, Object> dados = service.preverTempo();
+
+        if (dados.containsKey("erro")) {
+            return ResponseEntity
+                    .status(HttpStatus.SERVICE_UNAVAILABLE)
+                    .body(dados);
+        }
+
+        return ResponseEntity.ok(dados);
+    }
 }
