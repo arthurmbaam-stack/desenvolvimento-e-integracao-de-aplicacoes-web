@@ -35,23 +35,22 @@ body {
 }
 
 .register-image-logo-container {
-    width: 56px;
-    height: 56px;
+    width: 100%;
     margin: 0 auto 16px;
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: #211c2b;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .register-image-logo-container img {
-    width: 100%;
-    height: 100%;
+    width: auto;
+    height: 88px;
+    max-width: 100%;
     object-fit: contain;
     display: block;
+    filter: invert(1) brightness(1.6);
 }
+
 
 .register-form {
     width: 100%;
