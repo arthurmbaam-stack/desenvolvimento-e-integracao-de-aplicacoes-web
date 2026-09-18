@@ -52,8 +52,10 @@
 <script>
     const senha = document.getElementById('senha');
     const confirmarSenha = document.getElementById('confirmarSenha');
+    const registerForm = document.getElementById('registerForm');
 
     function validarSenhas() {
+        // o erro é sempre reportado no campo "confirmar senha"
         if (senha.value !== confirmarSenha.value) {
             confirmarSenha.setCustomValidity('As senhas não são iguais');
         } else {
@@ -61,9 +63,20 @@
         }
     }
 
+    // revalida ao digitar em QUALQUER um dos dois campos
     senha.addEventListener('input', validarSenhas);
     confirmarSenha.addEventListener('input', validarSenhas);
+
+    // garante a checagem também no momento do envio (à prova de dessincronização)
+    registerForm.addEventListener('submit', function (event) {
+        validarSenhas();
+        if (!confirmarSenha.checkValidity()) {
+            event.preventDefault();
+            confirmarSenha.reportValidity();
+        }
+    });
 </script>
+
 </body>
 
 </html>
